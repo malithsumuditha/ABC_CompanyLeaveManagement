@@ -13,6 +13,7 @@ namespace LeaveManagement.DataAccess.Repository.IRepository
         IEnumerable<T> GetAll(string? includeProperties = null);
         void Add(T entity);
 
+
         void Remove(T entity);
         void RemoveRange(IEnumerable<T> entity);
     }

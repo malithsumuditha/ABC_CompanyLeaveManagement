@@ -1,0 +1,74 @@
+﻿@model EmployeeType
+
+<form method="post" asp-action="Upsert" enctype="multipart/form-data">
+    <input asp-for="EmployeeTypeId" hidden />
+
+
+    <div class="row">
+        <div class="col-10">
+            <div class="border p-3 mt-4 row">
+                <div class="col-12 pb-3">
+                    <h2 class="text-primary">@(Model.EmployeeTypeId != 0 ? "Udate" : "Create") Product</h2>
+                    <hr />
+                </div>
+                
+                <div class="mb-3">
+                    <label asp-for="EmployeeTypeName"></label>
+                    <input asp-for="EmployeeTypeName" class="form-control">
+                    <span asp-validation-for="EmployeeTypeName" class="text-danger"></span>
+
+                </div>
+                <div class="mb-3">
+                    <label asp-for="AnnualLeaves"></label>
+                    <input asp-for="AnnualLeaves" class="form-control">
+                    <span asp-validation-for="AnnualLeaves" class="text-danger"></span>
+
+                </div>
+                 <div class="mb-3">
+                    <label asp-for="CasualLeaves"></label>
+                    <input asp-for="CasualLeaves" class="form-control">
+                    <span asp-validation-for="CasualLeaves" class="text-danger"></span>
+
+                </div>
+                 <div class="mb-3">
+                    <label asp-for="MedicalLeaves"></label>
+                    <input asp-for="MedicalLeaves" class="form-control">
+                    <span asp-validation-for="MedicalLeaves" class="text-danger"></span>
+
+                </div>
+                 
+
+                <div class="mb-3 col-12">
+                    @if (Model.EmployeeTypeId != 0)
+                    {
+                        <button type="submit" class="btn btn-success" style="width:150px">Update</button>
+                    }
+                    else
+                    {
+                        <button type="submit" onclick="return ValidateInput()" class="btn btn-success" style="width:150px">Create</button>
+                    }
+                    <a asp-controller="EmployeeType" asp-action="Index" class="btn btn-secondary" style="width:150px">
+                        Back to List
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-2 pt-4">
+        </div>
+    </div>
+
+
+</form>
+
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+    <script>
+
+
+
+    </script>
+
+
+}

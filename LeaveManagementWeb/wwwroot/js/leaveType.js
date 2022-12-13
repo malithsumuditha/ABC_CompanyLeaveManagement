@@ -11,16 +11,16 @@ function loadDataTable() {
         },
         "columns": [
             { "data": "leaveTypeName", "width": "15%" },
-            { "data": "leaveTypeName", "width": "15%" },
+            { "data": "totalLeaves", "width": "15%" },
             {
                 "data": "leaveTypeId",
                 "render": function (data) {
                     return `
                      <div class=" btn-group" role="group">
-                    <a href="/Admin/EmployeeType/Upsert?id=${data}"
+                    <a href="/Admin/LeaveType/Upsert?id=${data}"
                    class="btn btn-warning mx-1"><i class="bi bi-pencil-square"></i></a>
 
-                    <a 
+                    <a onClick=Delete('/Admin/LeaveType/Delete/${data}')
                    class="btn btn-danger mx-1"><i class="bi bi-trash"></i></a>
                 </div>
 

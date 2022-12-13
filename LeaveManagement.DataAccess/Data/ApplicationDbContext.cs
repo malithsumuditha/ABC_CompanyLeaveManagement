@@ -1,4 +1,5 @@
 ﻿using LeaveManagement.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -6,9 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace LeaveManagement.DataAccess.Data
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) 
         { 
@@ -16,5 +18,8 @@ namespace LeaveManagement.DataAccess.Data
         }
 
         public DbSet<LeaveType> LeaveTypes { get; set; }
+        public DbSet<ApplicationUser> applicationUsers { get; set; }
+        public DbSet<EmployeeType> EmployeeTypes { get; set; }
+
     }
 }

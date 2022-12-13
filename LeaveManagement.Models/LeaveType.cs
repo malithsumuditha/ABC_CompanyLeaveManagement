@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -16,8 +17,10 @@ namespace LeaveManagement.Models
         [DisplayName("Leave Type Name")]
         public string LeaveTypeName { get; set; }
         public int TotalLeaves { get; set; }
+        [ValidateNever]
         public DateTime CreatedDate { get; set; }  = DateTime.Now;
-        public DateTime UpdatedDate { get; set; } = DateTime.Now;
+        [ValidateNever]
+        public DateTime? UpdatedDate { get; set; } 
 
 
     }

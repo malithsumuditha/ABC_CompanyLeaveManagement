@@ -1,0 +1,64 @@
+﻿@model LeaveType
+
+<form method="post" asp-action="Upsert" enctype="multipart/form-data">
+     <input asp-for="LeaveTypeId" hidden />
+    
+
+    <div class="row">
+        <div class="col-10">
+            <div class="border p-3 mt-4 row">
+                <div class="col-12 pb-3">
+                    <h2 class="text-primary">@(Model.LeaveTypeId != 0 ? "Udate" : "Create") Leave Type</h2>
+                    <hr />
+                </div>
+                
+                <div class="mb-3">
+                    <label asp-for="LeaveTypeName"></label>
+                    <input asp-for="LeaveTypeName" class="form-control">
+                    <span asp-validation-for="LeaveTypeName" class="text-danger"></span>
+
+                </div>
+                <div class="mb-3">
+                    <label asp-for="TotalLeaves"></label>
+                    <input asp-for="TotalLeaves" class="form-control" />
+                    <span asp-validation-for="TotalLeaves" class="text-danger"></span>
+
+                </div>
+                
+
+
+                <div class="mb-3 col-12">
+                    @if (Model.LeaveTypeId != 0)
+                    {
+                        <button type="submit" class="btn btn-success" style="width:150px">Update</button>
+                    }
+                    else
+                    {
+                        <button type="submit" onclick="return ValidateInput()" class="btn btn-success" style="width:150px">Create</button>
+                    }
+                    <a asp-controller="LeaveType" asp-action="Index" class="btn btn-secondary" style="width:150px">
+                        Back to List
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-2 pt-4">
+           
+        </div>
+    </div>
+
+        
+</form>
+
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+   <script>
+
+       
+      
+   </script>
+
+
+}

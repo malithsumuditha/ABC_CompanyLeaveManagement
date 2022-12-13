@@ -1,0 +1,46 @@
+﻿
+
+<partial name="_Notification" />
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Employee Type List</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="EmployeeType" asp-action="Upsert" class="btn btn-success">
+                <i class="bi bi-person-plus"></i>  &nbsp; Add New EmployeeType
+            </a>
+        </div>
+    </div>
+</div>
+
+<table id="tblData" class="table table-bordered table-striped" style="width:100%">
+    <thead>
+        <tr>
+            
+            <th>
+                Employee Type Name
+            </th>
+            <th>
+                Annual Leaves
+            </th>
+            <th>
+                Casual Leaves
+            </th>
+            <th>
+                Medical Leaves
+            </th>
+
+            <th>
+                Action
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
+@section Scripts{
+    <script src="~/js/employeeType.js"></script>
+}

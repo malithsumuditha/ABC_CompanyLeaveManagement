@@ -9,6 +9,7 @@ namespace LeaveManagement.DataAccess.Repository.IRepository
     public interface IUnitOfWork
     {
         ILeaveTypeRepository LeaveType { get; }
+        IEmployeeTypeRepository EmployeeType { get; }
         void Save();
     }
 }

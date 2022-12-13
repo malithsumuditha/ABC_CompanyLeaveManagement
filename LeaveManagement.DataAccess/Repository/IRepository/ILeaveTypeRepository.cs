@@ -10,6 +10,7 @@ namespace LeaveManagement.DataAccess.Repository.IRepository
     public interface ILeaveTypeRepository : IRepository<LeaveType>
     {
         void Update(LeaveType obj);
+        int Test();
 
     }
 }

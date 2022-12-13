@@ -20,7 +20,24 @@ namespace LeaveManagement.DataAccess.Repository
 
         public void Update(LeaveType obj)
         {
-            _db.LeaveTypes.Update(obj);
+            var objFromDb = _db.LeaveTypes.FirstOrDefault(u => u.LeaveTypeId == obj.LeaveTypeId);
+            if (objFromDb != null)
+            {
+                objFromDb.UpdatedDate = DateTime.Now;
+                //obj.CreatedDate = objFromDb.CreatedDate;
+                objFromDb.TotalLeaves = obj.TotalLeaves;
+                objFromDb.LeaveTypeName = obj.LeaveTypeName;
+                
+                
+
+            }
+        }
+
+        public int Test()
+        {
+            var lastColumn = _db.LeaveTypes.OrderBy(x => x.LeaveTypeId).LastOrDefault();
+            int lastColumnId =  lastColumn.LeaveTypeId;
+            return lastColumnId;
         }
 
     }
