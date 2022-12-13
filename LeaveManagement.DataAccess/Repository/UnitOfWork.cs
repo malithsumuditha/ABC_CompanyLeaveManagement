@@ -15,12 +15,11 @@ namespace LeaveManagement.DataAccess.Repository
         public UnitOfWork(ApplicationDbContext db)
         {
             _db = db;
-           
+            LeaveType = new LeaveTypeRepository(_db);
 
         }
 
-        
-
+        public ILeaveTypeRepository LeaveType { get; private set; }
 
         public void Save()
         {
