@@ -18,6 +18,7 @@ namespace LeaveManagement.DataAccess.Data
         }
 
         public DbSet<LeaveType> LeaveTypes { get; set; }
+
         public DbSet<ApplicationUser> applicationUsers { get; set; }
         public DbSet<EmployeeType> EmployeeTypes { get; set; }
 

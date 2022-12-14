@@ -14,6 +14,11 @@ namespace LeaveManagement.Models
         [Required]
         [DisplayName("Full Name")]
         public string FullName { get; set; }
-        
+        public string UserCode { get; set; }
+
+        public int? EmployeeTypeId { get; set; }
+        public EmployeeType Employee { get; set; }
+
+
     }
 }

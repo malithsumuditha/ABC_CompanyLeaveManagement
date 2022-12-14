@@ -4,6 +4,7 @@ using LeaveManagement.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LeaveManagement.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221213224222_extendUserCode")]
+    partial class extendUserCode
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -288,9 +290,6 @@ namespace LeaveManagement.DataAccess.Migrations
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
-                    b.Property<int?>("EmployeeTypeId")
-                        .HasColumnType("int");
-
                     b.Property<string>("FullName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -298,8 +297,6 @@ namespace LeaveManagement.DataAccess.Migrations
                     b.Property<string>("UserCode")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.HasIndex("EmployeeTypeId");
 
                     b.HasDiscriminator().HasValue("ApplicationUser");
                 });
@@ -353,15 +350,6 @@ namespace LeaveManagement.DataAccess.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("LeaveManagement.Models.ApplicationUser", b =>
-                {
-                    b.HasOne("LeaveManagement.Models.EmployeeType", "Employee")
-                        .WithMany()
-                        .HasForeignKey("EmployeeTypeId");
-
-                    b.Navigation("Employee");
                 });
 #pragma warning restore 612, 618
         }

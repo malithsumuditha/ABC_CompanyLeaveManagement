@@ -10,6 +10,8 @@ namespace LeaveManagement.DataAccess.Repository.IRepository
     {
         ILeaveTypeRepository LeaveType { get; }
         IEmployeeTypeRepository EmployeeType { get; }
+
+        IApplicationUserRepository ApplicationUser { get; }
         void Save();
     }
 }

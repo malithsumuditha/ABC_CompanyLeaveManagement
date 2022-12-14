@@ -17,12 +17,14 @@ namespace LeaveManagement.DataAccess.Repository
             _db = db;
             LeaveType = new LeaveTypeRepository(_db);
             EmployeeType = new EmployeeTypeRepository(_db);
+            ApplicationUser= new ApplicationUserRepository(_db);
 
         }
 
         public ILeaveTypeRepository LeaveType { get; private set; }
         public IEmployeeTypeRepository EmployeeType { get; private set; }
 
+        public IApplicationUserRepository ApplicationUser { get; private set; }
         public void Save()
         {
             _db.SaveChanges();

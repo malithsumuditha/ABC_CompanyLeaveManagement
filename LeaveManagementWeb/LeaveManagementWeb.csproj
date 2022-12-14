@@ -22,6 +22,7 @@
   <ItemGroup>
     <ProjectReference Include="..\LeaveManagement.DataAccess\LeaveManagement.DataAccess.csproj" />
     <ProjectReference Include="..\LeaveManagement.Models\LeaveManagement.Models.csproj" />
+    <ProjectReference Include="..\LeaveManagement.Utility\LeaveManagement.Utility.csproj" />
   </ItemGroup>
 
   <ItemGroup>

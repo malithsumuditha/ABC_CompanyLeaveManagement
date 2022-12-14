@@ -3,6 +3,8 @@ using LeaveManagement.DataAccess.Repository.IRepository;
 using LeaveManagement.DataAccess.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using LeaveManagement.Utility;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,10 +16,11 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlSer
 
     ));
 
-builder.Services.AddDefaultIdentity<IdentityUser>()
+builder.Services.AddIdentity<IdentityUser,IdentityRole>().AddDefaultTokenProviders()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddSingleton<IEmailSender, EmailSender>();
 
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 builder.Services.ConfigureApplicationCookie(options =>
