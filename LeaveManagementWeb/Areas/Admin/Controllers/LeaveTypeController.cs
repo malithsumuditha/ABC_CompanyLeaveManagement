@@ -64,10 +64,29 @@ namespace LeaveManagementWeb.Areas.Admin.Controllers
 
                 string msg = "";
 
+				string leaveTypeName = obj.LeaveTypeName;
 
-                if (obj.LeaveTypeId == 0)
+				string subLeaveTypeName = leaveTypeName.Substring(0, 6);
+
+				if (subLeaveTypeName == "Annual")
+				{
+					obj.LeaveTypeName = "Annual";
+
+				}
+				else if (subLeaveTypeName == "Casual")
+				{
+					obj.LeaveTypeName = "Casual";
+				}
+				else if (subLeaveTypeName == "Medica")
+				{
+					obj.LeaveTypeName = "Medical";
+				}
+
+
+				if (obj.LeaveTypeId == 0)
                 {
-                    _unitOfWork.LeaveType.Add(obj);
+                    
+						_unitOfWork.LeaveType.Add(obj);
                     msg = "Added";
                 }
                 else
