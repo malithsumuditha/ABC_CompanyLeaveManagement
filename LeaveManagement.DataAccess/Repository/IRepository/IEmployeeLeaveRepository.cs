@@ -5,13 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
 namespace LeaveManagement.DataAccess.Repository.IRepository
 {
-    public interface IEmployeeTypeRepository : IRepository<EmployeeType>
+    public interface IEmployeeLeaveRepository : IRepository<EmployeeLeave>
     {
-        void Update(EmployeeType obj);
-        void AllocateLeaves(EmployeeType obj,int? id);
+        void Update(EmployeeLeave obj);
+        void UpdateGetLeaves(EmployeeLeave obj);
 
     }
 }

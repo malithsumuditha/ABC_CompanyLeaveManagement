@@ -1,5 +1,6 @@
 ﻿using LeaveManagement.DataAccess.Data;
 using LeaveManagement.DataAccess.Repository.IRepository;
+using LeaveManagement.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace LeaveManagement.DataAccess.Repository
 {
@@ -18,7 +20,7 @@ namespace LeaveManagement.DataAccess.Repository
         public Repository(ApplicationDbContext db)
         {
             _db = db;
-            //_db.Products.Include(u => u.Employee).Include(u=>u.Employee);
+            _db.RequestLeaves.Include(u => u.LeaveType);
             this.dbSet = _db.Set<T>();
         }
 
@@ -66,5 +68,6 @@ namespace LeaveManagement.DataAccess.Repository
         {
             dbSet.RemoveRange(entity);
         }
+
     }
 }

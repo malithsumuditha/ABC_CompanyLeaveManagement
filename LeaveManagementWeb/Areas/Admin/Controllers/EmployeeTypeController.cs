@@ -1,11 +1,14 @@
 ﻿using LeaveManagement.DataAccess.Repository.IRepository;
 using LeaveManagement.Models;
+using LeaveManagement.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 
 namespace LeaveManagementWeb.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles =SD.Role_Admin)]
     public class EmployeeTypeController : Controller
     {
         //private readonly ApplicationDbContext _db;
@@ -107,6 +110,10 @@ namespace LeaveManagementWeb.Areas.Admin.Controllers
         //}
 
 
+
+
+
+
         #region API CALLS
         [HttpGet]
         public IActionResult GetAll()
@@ -139,6 +146,39 @@ namespace LeaveManagementWeb.Areas.Admin.Controllers
             _unitOfWork.Save();
             return Json(new { success = true, message = "Delete Successfull" });
             // return RedirectToAction("Index");
+        }
+
+
+
+        [Authorize(Roles = SD.Role_Admin)]
+
+        [HttpPut]
+        public IActionResult AllocateLeaves(int? id)
+
+        {
+            if (id == null || id == 0)
+            {
+                return Json(new { success = false, message = "Error while Allocate" });
+            }
+
+
+
+            var obj = _unitOfWork.EmployeeType.GetFirstOrDefault(u => u.EmployeeTypeId == id);
+
+            if (obj == null)
+            {
+                return Json(new { success = false, message = "Error while Allocate" });
+
+            }
+
+            _unitOfWork.EmployeeType.AllocateLeaves(obj,id);
+
+            _unitOfWork.Save();
+
+            return Json(new { success = true, message = "Allocate Successfull" });
+
+
+
         }
 
         #endregion

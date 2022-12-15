@@ -1,0 +1,76 @@
+﻿
+
+<partial name="_Notification" />
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Leave List</h2>
+        </div>
+        @if (!User.IsInRole("Admin")){
+
+            <div class="col-6 text-end">
+            <a asp-controller="LeaveRequest" asp-action="Upsert" class="btn btn-success">
+                <i class="bi bi-person-plus"></i>  &nbsp;New Leave Request
+            </a>
+        </div>
+        }
+        
+    </div>
+</div>
+
+<table id="tblData" class="table table-bordered table-striped" style="width:100%">
+    <thead>
+        <tr>
+
+            <th>
+                Leave Type
+            </th>
+            <th>
+                Employee Id
+            </th>
+            <th>
+                Day From
+            </th>
+            <th>
+                Day To
+            </th>
+
+            <th>
+                Days
+            </th>
+            <th>
+                Status
+            </th>
+            <th>
+                Comment
+            </th>
+            
+            <th>
+                Action
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
+@{
+    int isAdmin = 0; 
+    if (User.IsInRole("Admin")){
+        isAdmin = 1;
+    }
+    else
+    {
+        isAdmin = 0;
+    }
+
+}
+
+@section Scripts{
+    <script src="~/js/leaveRequest.js"></script>
+    <script type="text/javascript">
+        var isAdmin = @isAdmin;
+    </script>
+}
+

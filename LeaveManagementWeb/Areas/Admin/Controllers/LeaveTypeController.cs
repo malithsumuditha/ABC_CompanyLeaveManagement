@@ -1,10 +1,14 @@
 ﻿using LeaveManagement.DataAccess.Repository.IRepository;
 using LeaveManagement.Models;
+using LeaveManagement.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 
 namespace LeaveManagementWeb.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = SD.Role_Admin)]
     public class LeaveTypeController :Controller
     {
         //private readonly ApplicationDbContext _db;

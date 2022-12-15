@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace LeaveManagement.DataAccess.Repository
@@ -36,6 +37,40 @@ namespace LeaveManagement.DataAccess.Repository
 
 
             }
+
+
+
+        }
+
+
+
+        public void AllocateLeaves( EmployeeType obj, int? id)
+            
+
+        {
+            var objFromDb = _db.EmployeeLeaves.Where(u => u.EmployeeTypeId == id);
+
+            if (objFromDb != null)
+            {
+                
+                foreach (EmployeeLeave element in objFromDb)
+                {
+                   
+                    element.AnnualLeaves= obj.AnnualLeaves;
+                    element.CasualLeaves = obj.CasualLeaves;
+                    element.MedicalLeaves = obj.MedicalLeaves;
+
+                 
+                   
+
+
+                }
+
+
+            }
+
+
+
         }
 
     }

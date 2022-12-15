@@ -4,6 +4,7 @@ using LeaveManagement.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LeaveManagement.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221214180851_requestLeavedown")]
+    partial class requestLeavedown
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -147,7 +149,7 @@ namespace LeaveManagement.DataAccess.Migrations
                     b.Property<DateTime>("DayTo")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("Days")
+                    b.Property<int?>("Days")
                         .HasColumnType("int");
 
                     b.Property<int>("EmployeeLeaveId")
@@ -162,8 +164,6 @@ namespace LeaveManagement.DataAccess.Migrations
                     b.HasKey("LeaveRequestId");
 
                     b.HasIndex("EmployeeLeaveId");
-
-                    b.HasIndex("LeaveTypeId");
 
                     b.ToTable("RequestLeaves");
                 });
@@ -417,15 +417,7 @@ namespace LeaveManagement.DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("LeaveManagement.Models.LeaveType", "LeaveType")
-                        .WithMany()
-                        .HasForeignKey("LeaveTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("EmployeeLeave");
-
-                    b.Navigation("LeaveType");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

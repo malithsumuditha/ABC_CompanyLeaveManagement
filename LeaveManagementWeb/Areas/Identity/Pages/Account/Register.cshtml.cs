@@ -185,11 +185,11 @@ namespace LeaveManagementWeb.Areas.Identity.Pages.Account
                     if (newId < 10)
                     {
                         userCode = uLeteer + "000" + newId;
-                    }else if(newId > 100)
+                    }else if(newId > 10)
                     {
                         userCode = uLeteer + "00" + newId;
                     }
-                    else if (newId > 1000)
+                    else if (newId > 100)
                     {
                         userCode = uLeteer + "0" + newId;
                     }
@@ -199,12 +199,61 @@ namespace LeaveManagementWeb.Areas.Identity.Pages.Account
                     }
                 }
 
-                //LeaveType leaveType = new();
 
-                //leaveType.LeaveTypeName = "Malith";
-                //leaveType.TotalLeaves = 10;
-                
-                //_unitOfWork.LeaveType.Add(leaveType);
+                //create table
+
+                if (Input.Role == SD.Role_Employee)
+                {
+                    //LeaveType leaveType = new();
+
+                    //leaveType.LeaveTypeName = "Malith";
+                    //leaveType.TotalLeaves = 10;
+
+                    //_unitOfWork.LeaveType.Add(leaveType);
+
+                    int annualLeaves;
+                    int casualLeaves;
+                    int medicalLeaves;
+
+                    var leavesFromDb = _unitOfWork.EmployeeType.GetFirstOrDefault(u => u.EmployeeTypeId == Input.EmployeeTypeId);
+
+
+                    if (leavesFromDb == null)
+                    {
+                        annualLeaves = 0;
+                        casualLeaves = 0;
+                        medicalLeaves = 0;
+
+                    }
+                    else
+                    {
+                        annualLeaves = (int)leavesFromDb.AnnualLeaves;
+                        casualLeaves = (int)leavesFromDb.CasualLeaves;
+                        medicalLeaves = (int)leavesFromDb.MedicalLeaves;
+                    }
+
+
+
+
+                    EmployeeLeave employeeLeave = new();
+
+                    employeeLeave.AnnualLeaves = annualLeaves;
+                    employeeLeave.CasualLeaves = casualLeaves;
+                    employeeLeave.MedicalLeaves = medicalLeaves;
+                    employeeLeave.GetAnnualLeaves = 0;
+                    employeeLeave.GetCasualLeaves = 0;
+                    employeeLeave.GetMedicalLeaves = 0;
+                    employeeLeave.UserId = userCode;
+                    employeeLeave.EmployeeTypeId = (int)Input.EmployeeTypeId;
+
+					var userId = await _userManager.GetUserIdAsync(user);
+                   
+                    employeeLeave.UserCode = userId;
+
+
+					_unitOfWork.EmployeeLeave.Add(employeeLeave);
+                }
+
 
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
@@ -234,12 +283,7 @@ namespace LeaveManagementWeb.Areas.Identity.Pages.Account
                     }
 
 
-                    //create table
-
-                    if (Input.Role == SD.Role_Employee)
-                    {
-                        
-                    }
+                    
 
 
                     var userId = await _userManager.GetUserIdAsync(user);

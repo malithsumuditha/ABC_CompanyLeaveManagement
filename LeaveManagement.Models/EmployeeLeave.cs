@@ -2,13 +2,14 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace LeaveManagement.Models
 {
-    public class EmployeeLeaves
+    public class EmployeeLeave
     {
         [Key]
         public int Id { get; set; } 
@@ -21,11 +22,18 @@ namespace LeaveManagement.Models
         public int? GetAnnualLeaves { get; set; }
         public int? GetCasualLeaves { get; set; }
         public int? GetMedicalLeaves { get; set; }
+        public string? UserId { get; set; }
+        public string? UserCode { get; set; }
 
-        public int UserId { get; set; }
+		
+		[ValidateNever]
+		[ForeignKey("UserCode")]
+		public ApplicationUser ApplicationUser { get; set; }
 
-        public ApplicationUser ApplicationUser { get; set; }
-        
+        //[ValidateNever]
+        //[ForeignKey("UserCode")]
+        //public ApplicationUser ApplicationUser { get; set; }
+
 
     }
 }

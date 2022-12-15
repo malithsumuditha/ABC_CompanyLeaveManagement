@@ -18,6 +18,8 @@ namespace LeaveManagement.DataAccess.Repository
             LeaveType = new LeaveTypeRepository(_db);
             EmployeeType = new EmployeeTypeRepository(_db);
             ApplicationUser= new ApplicationUserRepository(_db);
+            EmployeeLeave = new EmployeeLeaveRepository(_db);
+            RequestLeave = new RequestLeaveRepository(_db);
 
         }
 
@@ -25,6 +27,9 @@ namespace LeaveManagement.DataAccess.Repository
         public IEmployeeTypeRepository EmployeeType { get; private set; }
 
         public IApplicationUserRepository ApplicationUser { get; private set; }
+        public IEmployeeLeaveRepository EmployeeLeave { get; private set; }
+        public IRequestLeaveRepository RequestLeave { get; private set; }
+
         public void Save()
         {
             _db.SaveChanges();

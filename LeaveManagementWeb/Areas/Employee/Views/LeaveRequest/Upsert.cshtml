@@ -1,0 +1,144 @@
+﻿@model LeaveManagement.Models.ViewModels.RequestLeaveVM
+<form method="post" asp-action="Upsert" enctype="multipart/form-data">
+	<input asp-for="RequestLeave.LeaveRequestId" hidden />
+	@*<input asp-for="RequestLeave.EmployeeLeaveId" hidden />*@
+	@*<input hidden name="employeeIdInput" id="employeeIdInput" value="@ViewData["employeeId"]" />*@
+
+	@*@{
+		var employeeType = @ViewData["employeeType"];
+		if(employeeType==)
+	}*@
+
+	<div class="row">
+		<div class="col-10">
+			<div class="border p-3 mt-4 row">
+				<div class="col-12 pb-3">
+					<h2 class="text-primary">Request Leave</h2>
+					<hr />
+				</div>
+				<div class="text-danger" asp-validation-summary="All"></div>
+				<div class="mb-3">
+					<label>EmployeeId</label>
+					<input value="@ViewData["employeeId"]" asp-for="RequestLeave.EmployeeLeaveId" class="form-control" readonly>
+					<span asp-validation-for="RequestLeave.EmployeeLeaveId" class="text-danger"></span>
+
+				</div>
+
+				<div class="mb-3">
+					<label asp-for="RequestLeave.DayFrom"></label>
+					<input  asp-for="RequestLeave.DayFrom" class="form-control">
+					<span asp-validation-for="RequestLeave.DayFrom" class="text-danger"></span>
+
+				</div>
+				<div class="mb-3">
+					<label asp-for="RequestLeave.DayTo"></label>
+					<input  asp-for="RequestLeave.DayTo" class="form-control" />
+					<span asp-validation-for="RequestLeave.DayTo" class="text-danger"></span>
+
+				</div>
+
+				<div class="mb-3">
+					<label asp-for="RequestLeave.Days"></label>
+					<input asp-for="RequestLeave.Days" class="form-control" />
+					<span asp-validation-for="RequestLeave.Days" class="text-danger"></span>
+
+				</div>
+
+				
+					<div class="mb-3 col-6">
+						<label asp-for="RequestLeave.LeaveTypeId"></label>
+						<select asp-for="RequestLeave.LeaveTypeId" asp-items="@Model.LeaveTypeList" class="form-select">
+							<option disabled selected>--Select Leave Type--</option>
+						</select>
+						<span asp-validation-for="RequestLeave.LeaveTypeId" class="text-danger"></span>
+
+					</div>
+				
+
+				
+
+				<div class="mb-3">
+					<label asp-for="RequestLeave.Comment"></label>
+					<textarea asp-for="RequestLeave.Comment" rows="3" class="form-control"></textarea>
+					<span asp-validation-for="RequestLeave.Comment" class="text-danger"></span>
+
+				</div>
+
+
+				<div class="mb-3 col-12">
+					
+						<button type="submit" onclick="return ValidateInput()" class="btn btn-success" style="width:150px">Request Leave</button>
+					
+					<a asp-controller="LeaveRequest" asp-action="Index" class="btn btn-secondary" style="width:150px">
+						Back to List
+					</a>
+				</div>
+
+			</div>
+		</div>
+		<div class="col-2 pt-4">
+			<div class="col">
+				<div class="card radius-10">
+					<div class="card-body">
+						<div class="d-flex align-items-center">
+							<div>
+								<p class="mb-0 text-secondary text-center">Annual Leaves Left</p>
+								<h4 class="my-1 text-center">@ViewData["annualLeaves"]</h4>
+							</div>
+							<div class="text-danger ms-auto font-35">
+								<i class='bx bxl-github'></i>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col pt-2">
+				<div class="card radius-10">
+					<div class="card-body">
+						<div class="d-flex align-items-center">
+							<div>
+								<p class="mb-0 text-secondary text-center">Casual Leaves Left</p>
+								<h4 class="my-1 text-center">@ViewData["casuallLeaves"]</h4>
+							</div>
+							<div class="text-danger ms-auto font-35">
+								<i class='bx bxl-github'></i>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col pt-2">
+				<div class="card radius-10">
+					<div class="card-body">
+						<div class="d-flex align-items-center">
+							<div>
+								<p class="mb-0 text-secondary text-center">Medical Leaves Left</p>
+								<h4 class="my-1 text-center">@ViewData["medicalLeaves"]</h4>
+							</div>
+							<div class="text-danger ms-auto font-35">
+								<i class='bx bxl-github'></i>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
+</form>
+
+@section Scripts {
+	@{
+		<partial name="_ValidationScriptsPartial" />
+	}
+	<script>
+
+
+
+	</script>
+
+
+}
