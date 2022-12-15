@@ -76,7 +76,7 @@ function AllocateLeaves(url) {
         showCancelButton: true,
         confirmButtonColor: '#14A44D',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, approve it!'
+        confirmButtonText: 'Yes, allocate it!'
     }).then((result) => {
         if (result.isConfirmed) {
             $.ajax({

@@ -63,7 +63,7 @@ namespace LeaveManagement.DataAccess.Migrations
 
                     b.HasIndex("UserCode");
 
-                    b.ToTable("EmployeeLeaves");
+                    b.ToTable("EmployeeLeaves", (string)null);
                 });
 
             modelBuilder.Entity("LeaveManagement.Models.EmployeeType", b =>
@@ -95,7 +95,7 @@ namespace LeaveManagement.DataAccess.Migrations
 
                     b.HasKey("EmployeeTypeId");
 
-                    b.ToTable("EmployeeTypes");
+                    b.ToTable("EmployeeTypes", (string)null);
                 });
 
             modelBuilder.Entity("LeaveManagement.Models.LeaveType", b =>
@@ -121,7 +121,7 @@ namespace LeaveManagement.DataAccess.Migrations
 
                     b.HasKey("LeaveTypeId");
 
-                    b.ToTable("LeaveTypes");
+                    b.ToTable("LeaveTypes", (string)null);
                 });
 
             modelBuilder.Entity("LeaveManagement.Models.RequestLeave", b =>
@@ -165,7 +165,7 @@ namespace LeaveManagement.DataAccess.Migrations
 
                     b.HasIndex("LeaveTypeId");
 
-                    b.ToTable("RequestLeaves");
+                    b.ToTable("RequestLeaves", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

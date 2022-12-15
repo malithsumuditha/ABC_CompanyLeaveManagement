@@ -127,7 +127,7 @@ namespace LeaveManagementWeb.Areas.Employee.Controllers
                         else
                         {
 							//ERROR
-							ModelState.AddModelError("requestLeave.Days", "Selected Days are bigger than remain days");
+							ModelState.AddModelError("requestLeave.Days", "Selected Days are bigger than remain days! Please try another leave type");
 						}
 
 							
@@ -152,7 +152,7 @@ namespace LeaveManagementWeb.Areas.Employee.Controllers
 						else
 						{
 							//ERROR
-							ModelState.AddModelError("requestLeave.Days", "Selected Days are bigger than remain days");
+							ModelState.AddModelError("requestLeave.Days", "Selected Days are bigger than remain days! Please try another leave type");
 						}
 					}
                     else 
@@ -175,7 +175,7 @@ namespace LeaveManagementWeb.Areas.Employee.Controllers
 						else
 						{
 							//ERROR
-							ModelState.AddModelError("requestLeave.Days", "Selected Days are bigger than remain days");
+							ModelState.AddModelError("requestLeave.Days", "Selected Days are bigger than remain days! Please try another leave type");
 						}
 					}
                     
